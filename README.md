@@ -14,17 +14,17 @@ This Service Principal module:
 ## Notes
 
 To do equivalent to the command:
-`az ad sp create-for-rbac --display-name "sp-with-rbac-test"`
+`az ad sp create-for-rbac --display-name "spn-with-rbac-test"`
 
-Set the following settings:
+Set the following settings for the module instance:
 
 ```hcl
 module "spn_with_secret" {
-  # Local use
-  source = "../../terraform-azuread-spn"
+  source  = "app.terraform.io/embergertf/spn/azuread"
+  version = "~> 1.0"
 
   # Service Principal settings
-  spn_name             = "test-module-w-secret"
+  spn_name             = "with-rbac-test"
   create_client_secret = true
 }
 ```
