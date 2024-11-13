@@ -3,45 +3,36 @@
 #
 
 #--------------------------------------------------------------
-#   Example #{MODULEDISPLAYNAME}# main
+#   Example Service Principal main
 #--------------------------------------------------------------
-#   / Resource Group
-module "rg" {
-  # Terraform Cloud use
-  source  = "app.terraform.io/embergertf/resourcegroup/azurerm"
-  version = "~> 2.1"
-
-  # Name override
-  # name_override = var.name_override
-
-  # Naming convention
-  naming_values = var.naming_values
-  # region_code     = var.region_code
-  # subsc_code      = var.subsc_code
-  # env             = var.env
-  # base_name       = var.base_name
-  # additional_name = var.additional_name
-  # iterator        = var.iterator
-  # owner           = var.owner
-
-  # # Random
-  # add_random = var.add_random
-  # rnd_length = var.rnd_length
-
-  # additional_tags = null
-}
-
-
-#   / #{MODULEDISPLAYNAME}# module tests
-module "#{MODULECODE}#_module_localtest" {
+#   / Service Principal module tests
+module "spn_default" {
   # Local use
-  source = "../../terraform-azurerm-#{MODULECODE}#"
+  source = "../../terraform-azuread-spn"
 
-  # Naming convention
-  naming_values = module.rg.naming_values
-
-  # #{MODULEDISPLAYNAME}# settings
-  resource_group_name = module.rg.resource_group_name
-
-  additional_tags = var.#{MODULECODE}#_additional_tags
+  # Service Principal settings
+  spn_name = "test-module-default"
+  owners   = var.test_owners
 }
+
+module "spn_with_secret" {
+  # Local use
+  source = "../../terraform-azuread-spn"
+
+  # Service Principal settings
+  spn_name             = "test-module-w-secret"
+  create_client_secret = true
+  owners               = var.test_owners
+}
+
+module "spn_to_kv" {
+  # Local use
+  source = "../../terraform-azuread-spn"
+
+  # Service Principal settings
+  spn_name             = "test-module-to-kv"
+  create_client_secret = true
+  kv_id                = var.kv_id
+  owners               = var.test_owners
+}
+#*/
