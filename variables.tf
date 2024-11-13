@@ -3,92 +3,59 @@
 #
 
 #--------------------------------------------------------------
-#   #{MODULEDISPLAYNAME}# module variables
+#   Service Principal module variables
 #--------------------------------------------------------------
 
 # ############################   Dependencies         ############################
 
-# / Resource Group for the #{MODULEDISPLAYNAME}#
-variable "resource_group_name" {
+# / Key vault ID to store the Service Principal
+variable "kv_id" {
   type        = string
-  description = "(Required) Name of the `Resource Group` in which to create the #{MODULEDISPLAYNAME}#."
+  description = "(Optional) Key vault ID to store the Service Principal information. Example: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-name/providers/Microsoft.KeyVault/vaults/kv-name`."
+  default     = null
 }
 
 # ############################   Required Variables   ############################
 
 # None
+variable "spn_name" {
+  type        = string
+  description = "(Required) Service Principal name."
+}
 
 # ############################   Optional Variables   ############################
-# / Naming
-variable "name_override" {
-  type        = string
-  description = "(Optional) Full name to override all the name generation logic. Example: 'biglittletest' will generate the resource group name \"'rg-biglittletest'\"."
-  default     = null
-}
-variable "naming_values" {
-  type = object({
-    region_code     = string
-    subsc_code      = string
-    env             = string
-    base_name       = string
-    additional_name = string
-    iterator        = string
-    owner           = string
-    additional_tags = map(string)
-  })
-  description = "(Optional) A terraform object with the naming values in 1 variable."
-  default     = null
-}
-variable "region_code" {
-  type        = string
-  description = "(Optional) Resource region code. Must be compatible with base module. Example: `cac`."
-  default     = null
-}
-variable "subsc_code" {
-  type        = string
-  description = "(Optional) Subscription code or abbreviation. Example: `azint`."
-  default     = null
-}
-variable "env" {
-  type        = string
-  description = "(Optional) Environment code. Example: `test`. <br></br>&#8226; Value of `env` examples can be: `[nonprod,prod,core,int,uat,stage,dev,test]`."
-  default     = null
-}
-variable "base_name" {
-  type        = string
-  description = "(Optional) Resource \"base\" name. Example: `aks`."
-  default     = null
-}
-variable "additional_name" {
-  type        = string
-  description = "(Optional) Additional suffix to create resource uniqueness. It will be separated by a `'-'` from the \"name's generated\" suffix. Example: `lan1`."
-  default     = null
-}
-variable "iterator" {
-  type        = string
-  description = "(Optional) Iterator to create resource uniqueness. It will be separated by a `'-'` from the \"name's generated + additional_name\" concatenation. Example: `001`."
-  default     = null
-}
-variable "owner" {
-  type        = string
-  description = "(Optional) Deployed resources owner."
-  default     = null
-}
-variable "additional_tags" {
-  description = "(Optional) Additional tags for the Resource Group."
-  type        = map(string)
-  default     = null
-}
-variable "add_random" {
-  type        = bool
-  description = "(Optional) When set to `true`, it will add a `rnd_length`'s long `random_number` at the name's end."
-  default     = false
-}
-variable "rnd_length" {
-  type        = number
-  description = "(Optional) Set the length of the `random_number` generated."
-  default     = 2
-}
 
-# / #{MODULEDISPLAYNAME}# specific variables
+# / Service Principal specific variables
+variable "owners" {
+  type        = list(string)
+  description = "(Optional) List of owners' object IDs. Example: `[\"00000000-0000-0000-0000-000000000000\"]`."
+  default     = []
+}
+variable "create_client_secret" {
+  type    = bool
+  default = false
+}
+variable "rotate_sp_secret" {
+  type    = bool
+  default = false
+}
+variable "in3yearsUTCFormatted" { default = null }
+variable "create_fedid_cred" {
+  type    = bool
+  default = false
+}
+variable "secret_duration" {
+  type        = string
+  description = "(Optional) The duration for which the secret is valid in hours. Valid format `<num>h`. Default is 26280h (3 years)."
+  default     = "26280h"
+}
+variable "display_name" { default = null }
+variable "description" { default = null }
+variable "audiences" { default = [] }
+variable "issuer" { default = null }
+variable "subject" { default = null }
 
+# variable "store_az_sp_in_kv" {
+#   type    = bool
+#   default = false
+# }

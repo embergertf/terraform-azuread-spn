@@ -13,8 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed -->
 
-## [1.0.0] - #{CREATIONDATE}# - #{MODULEDISPLAYNAME}# module 1st Release
+## [1.0.0] - 2024-11-13 - Service Principal module 1st Release
 
 ### Added
 
-- Added #{MODULEDISPLAYNAME}# module
+- Added Service Principal module

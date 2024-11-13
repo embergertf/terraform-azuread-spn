@@ -3,7 +3,7 @@
 #
 
 #--------------------------------------------------------------
-#   Example #{MODULEDISPLAYNAME}# azurerm provider placeholder
+#   Example Service Principal azurerm provider placeholder
 #--------------------------------------------------------------
 provider "azurerm" {
   # Reference: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#argument-reference

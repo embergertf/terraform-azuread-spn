@@ -3,43 +3,36 @@
 #
 
 #--------------------------------------------------------------
-#   #{MODULEDISPLAYNAME}# module outputs
+#   Service Principal module outputs
 #--------------------------------------------------------------
 
-# ############################   #{MODULEDISPLAYNAME}#   ############################
-output "name" {
-  value       = azurerm_xxx_yyy.this.name
-  description = "#{MODULEDISPLAYNAME}# name."
+# ############################   Application Registration   ############################
+output "app_display_name" {
+  value       = azuread_application.app_registration.display_name
+  description = "App registration display name."
 }
-output "id" {
-  value       = azurerm_xxx_yyy.this.id
-  description = "#{MODULEDISPLAYNAME}# ID."
+output "app_client_id" {
+  value       = azuread_application.app_registration.client_id
+  description = "App registration Application (client) ID."
 }
-output "location" {
-  value       = azurerm_xxx_yyy.this.location
-  description = "#{MODULEDISPLAYNAME}# location."
+output "app_tf_id" {
+  value       = azuread_application.app_registration.id
+  description = "App registration terraform resource ID."
 }
-output "resource_group_name" {
-  value       = azurerm_xxx_yyy.this.resource_group_name
-  description = "#{MODULEDISPLAYNAME}# Resource group name."
+output "app_object_id" {
+  value       = azuread_application.app_registration.object_id
+  description = "App registration Object ID."
 }
-
-/*
-# ############################   Debug                ############################
-output "name" {
-  value       = module.#{MODULECODE}#_base.name
-  description = "#{MODULEDISPLAYNAME}# name."
+output "secret_end_date" {
+  value       = local.secret_end_date_UTCFormatted
+  description = "The secret end date, when secret is created."
 }
-output "location" {
-  value       = module.#{MODULECODE}#_base.location
-  description = "#{MODULEDISPLAYNAME}# location."
+output "spn_object_id" {
+  value       = azuread_service_principal.azsp_sp.object_id
+  description = "The App Registration Service Principal Object ID."
 }
-output "random_suffix" {
-  value       = module.#{MODULECODE}#_base.random_suffix
-  description = "Randomized piece of the #{MODULEDISPLAYNAME}# name when \"`add_random = true`\"."
-}
-output "naming_module_tags" {
-  value       = module.#{MODULECODE}#_base.tags
-  description = "Naming module tags."
+output "principal_id" {
+  value       = azuread_service_principal.azsp_sp.object_id
+  description = "The App Registration Service Principal Object ID."
 }
 #*/

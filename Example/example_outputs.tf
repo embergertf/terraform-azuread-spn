@@ -3,27 +3,61 @@
 #
 
 #--------------------------------------------------------------
-#   Example #{MODULEDISPLAYNAME}# outputs
+#   Example Service Principal outputs
 #--------------------------------------------------------------
 
-# ############################   #{MODULEDISPLAYNAME}#   ############################
-output "#{MODULECODE}#_name" {
-  value       = module.#{MODULECODE}#_module_localtest.name
-  description = "#{MODULEDISPLAYNAME}# name."
+# ############################   Service Principal   ############################
+# / spn_default
+output "spn_default_app_display_name" {
+  value       = module.spn_default.app_display_name
+  description = "App registration display name."
 }
-output "#{MODULECODE}#_location" {
-  value       = module.#{MODULECODE}#_module_localtest.location
-  description = "#{MODULEDISPLAYNAME}# location."
+output "spn_default_app_client_id" {
+  value       = module.spn_default.app_client_id
+  description = "App registration Application ID."
 }
-output "#{MODULECODE}#_random_suffix" {
-  value       = module.#{MODULECODE}#_module_localtest.random_suffix
-  description = "Randomized piece of the #{MODULEDISPLAYNAME}# name when \"`add_random = true`\"."
-}
-output "#{MODULECODE}#_tags" {
-  value       = module.#{MODULECODE}#_module_localtest.tags
-  description = "#{MODULEDISPLAYNAME}# tags."
+output "spn_default_app_object_id" {
+  value       = module.spn_default.app_object_id
+  description = "App registration Object ID."
 }
 
+# / spn_with_secret
+output "spn_with_secret_app_display_name" {
+  value       = module.spn_with_secret.app_display_name
+  description = "App registration display name."
+}
+output "spn_with_secret_app_client_id" {
+  value       = module.spn_with_secret.app_client_id
+  description = "App registration Application ID."
+}
+output "spn_with_secret_app_object_id" {
+  value       = module.spn_with_secret.app_object_id
+  description = "App registration Object ID."
+}
+output "spn_with_secret_secret_end_date" {
+  value       = module.spn_with_secret.secret_end_date
+  description = "Secret End date."
+}
+output "spn_with_secret_app_principal_id" {
+  value       = module.spn_with_secret.principal_id
+  description = "App registration Service Principal (Enterprise app) Object ID."
+}
+
+# / spn_to_kv
+output "spn_to_kv_app_display_name" {
+  value       = module.spn_to_kv.app_display_name
+  description = "App registration display name."
+}
+output "spn_to_kv_app_client_id" {
+  value       = module.spn_to_kv.app_client_id
+  description = "App registration Application ID."
+}
+output "spn_to_kv_app_object_id" {
+  value       = module.spn_to_kv.app_object_id
+  description = "App registration Object ID."
+}
+
+/*
 # ############################   DEBUG                ############################
 output "var_naming_values" {
   value       = var.naming_values
