@@ -64,6 +64,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_spn_name"></a> [spn\_name](#input\_spn\_name) | (Required) Service Principal name. | `string` | n/a | yes |
+| <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | (Optional) Additional tags for the Key vault secret. | `map(string)` | `null` | no |
 | <a name="input_audiences"></a> [audiences](#input\_audiences) | n/a | `list` | `[]` | no |
 | <a name="input_create_client_secret"></a> [create\_client\_secret](#input\_create\_client\_secret) | n/a | `bool` | `false` | no |
 | <a name="input_create_fedid_cred"></a> [create\_fedid\_cred](#input\_create\_fedid\_cred) | n/a | `bool` | `false` | no |

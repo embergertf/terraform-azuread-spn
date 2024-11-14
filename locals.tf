@@ -7,7 +7,7 @@
 #--------------------------------------------------------------
 # / locals group 1
 locals {
-  module_tags = merge(tomap({
+  module_tags = merge(var.additional_tags, tomap({
     "file-encoding" = "utf-8",
     "TfModule"      = "embergertf/spn",
   }))
