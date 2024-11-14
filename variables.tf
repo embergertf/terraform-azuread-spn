@@ -55,7 +55,8 @@ variable "audiences" { default = [] }
 variable "issuer" { default = null }
 variable "subject" { default = null }
 
-# variable "store_az_sp_in_kv" {
-#   type    = bool
-#   default = false
-# }
+variable "additional_tags" {
+  description = "(Optional) Additional tags for the Key vault secret."
+  type        = map(string)
+  default     = null
+}
